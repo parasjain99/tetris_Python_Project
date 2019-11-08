@@ -6,7 +6,7 @@ import random
 shapes: S, Z, I, O, J, L, T
 represented in order by 0 - 6
 """
-
+surface_color = (255,255,255)
 pygame.font.init()
 
 # GLOBALS VARS
@@ -18,7 +18,6 @@ block_size = 30
 
 top_left_x = (s_width - play_width) // 2
 top_left_y = s_height - play_height
-
 
 # SHAPE FORMATS
 
@@ -45,12 +44,12 @@ class Piece(object):
         self.y = row
         self.shape = shape
         self.color = shape_colors[shapes.index(shape)]
-        # self.color = border_color
         self.rotation = 0  # number from 0-3
 
 
 def create_grid(locked_positions={}):
-    grid = [[(0,0,0) for x in range(10)] for y in range(20)]
+    # grid = [[(0,0,0) for x in range(10)] for y in range(20)]
+    grid = [[surface_color for x in range(10)] for y in range(20)]
 
     for i in range(len(grid)):
         for j in range(len(grid[i])):
@@ -70,11 +69,8 @@ def convert_shape_format(piece):
 
 
 def valid_space(shape, grid):
-    accepted_positions = [[(j, i) for j in range(10) if grid[i][j] == (0,0,0)] for i in range(20)]
-    accepted_positions = [j for sub in accepted_positions for j in sub]     #doubt
+    accepted_positions = [(j, i) for i in range(20) for j in range(10) if grid[i][j] == surface_color]
     formatted = convert_shape_format(shape)
-    # formatted = shape.shape[shape.rotation % len(shape.shape)]
-
     for pos in formatted:
         if pos not in accepted_positions:
             if pos[1] > -1:
@@ -119,7 +115,7 @@ def clear_rows(grid, locked):
     inc = 0
     for i in range(len(grid)-1,-1,-1):
         row = grid[i]
-        if (0, 0, 0) not in row:
+        if surface_color not in row:
             inc += 1
             # add positions to remove from locked
             ind = i
@@ -155,7 +151,7 @@ def draw_next_shape(shape, surface):
 
 def draw_window(surface):
     global grid
-    surface.fill((0,0,0))
+    surface.fill(surface_color)
     # Tetris Title
     font = pygame.font.SysFont('comicsans', 60)
     label = font.render('TETRIS', 1, (255,255,255))
@@ -236,7 +232,6 @@ def main():
                     print(convert_shape_format(current_piece))'''  # todo fix
 
         shape_pos = convert_shape_format(current_piece)
-        # shape_pos = current_piece.shape[current_piece.rotation % len(current_piece.shape)]
 
         # add piece to the grid for drawing
         for i in range(len(shape_pos)):
@@ -264,7 +259,7 @@ def main():
         if check_lost(locked_positions):
             run = False
 
-    draw_text_middle("You Lost", 40, (255,255,255), win)
+    draw_text_middle("You Lost", 40, (0,0,0), win)
     pygame.display.update()
     pygame.time.delay(2000)
 
@@ -272,8 +267,8 @@ def main():
 def main_menu():
     run = True
     while run:
-        win.fill((0,0,0))
-        draw_text_middle('Press any key to begin.', 60, (255, 255, 255), win)
+        win.fill(surface_color)
+        draw_text_middle('Press any key to begin.', 60, (0, 0, 0), win)
         pygame.display.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -282,7 +277,6 @@ def main_menu():
             if event.type == pygame.KEYDOWN:
                 main()
     pygame.quit()
-
 
 win = pygame.display.set_mode((s_width, s_height))
 pygame.display.set_caption('Tetris')
