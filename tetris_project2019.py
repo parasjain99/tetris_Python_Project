@@ -22,138 +22,19 @@ top_left_y = s_height - play_height
 
 # SHAPE FORMATS
 
-S = [['.....',
-      '.....',
-      '..00.',
-      '.00..',
-      '.....'],
-     ['.....',
-      '..0..',
-      '..00.',
-      '...0.',
-      '.....']]
-
-Z = [['.....',
-      '.....',
-      '.00..',
-      '..00.',
-      '.....'],
-     ['.....',
-      '..0..',
-      '.00..',
-      '.0...',
-      '.....']]
-
-I = [['..0..',
-      '..0..',
-      '..0..',
-      '..0..',
-      '.....'],
-     ['.....',
-      '0000.',
-      '.....',
-      '.....',
-      '.....']]
-
-O = [['.....',
-      '.....',
-      '.00..',
-      '.00..',
-      '.....']]
-
-J = [['.....',
-      '.0...',
-      '.000.',
-      '.....',
-      '.....'],
-     ['.....',
-      '..00.',
-      '..0..',
-      '..0..',
-      '.....'],
-     ['.....',
-      '.....',
-      '.000.',
-      '...0.',
-      '.....'],
-     ['.....',
-      '..0..',
-      '..0..',
-      '.00..',
-      '.....']]
-
-L = [['.....',
-      '...0.',
-      '.000.',
-      '.....',
-      '.....'],
-     ['.....',
-      '..0..',
-      '..0..',
-      '..00.',
-      '.....'],
-     ['.....',
-      '.....',
-      '.000.',
-      '.0...',
-      '.....'],
-     ['.....',
-      '.00..',
-      '..0..',
-      '..0..',
-      '.....']]
-
-T = [['.....',
-      '..0..',
-      '.000.',
-      '.....',
-      '.....'],
-     ['.....',
-      '..0..',
-      '..00.',
-      '..0..',
-      '.....'],
-     ['.....',
-      '.....',
-      '.000.',
-      '..0..',
-      '.....'],
-     ['.....',
-      '..0..',
-      '.00..',
-      '..0..',
-      '.....']]
+S = [[(0, 0), (1, 0), (-1, 1), (0, 1)], [(0, -1), (0, 0), (1, 0), (1, 1)]]
+Z = [[(-1, 0), (0, 0), (0, 1), (1, 1)], [(0, -1), (-1, 0), (0, 0), (-1, 1)]]
+I = [[(0, -2), (0, -1), (0, 0), (0, 1)], [(-2, -1), (-1, -1), (0, -1), (1, -1)]]
+O = [[(-1, 0), (0, 0), (-1, 1), (0, 1)]]
+J=[[(-1, -1), (-1, 0), (0, 0), (1, 0)], [(0, -1), (1, -1), (0, 0), (0, 1)], [(-1, 0), (0, 0), (1, 0), (1, 1)], [(0, -1), (0, 0), (-1, 1), (0, 1)]]
+L=[[(1, -1), (-1, 0), (0, 0), (1, 0)], [(0, -1), (0, 0), (0, 1), (1, 1)], [(-1, 0), (0, 0), (1, 0), (-1, 1)], [(-1, -1), (0, -1), (0, 0), (0, 1)]]
+T=[[(0, -1), (-1, 0), (0, 0), (1, 0)], [(0, -1), (0, 0), (1, 0), (0, 1)], [(-1, 0), (0, 0), (1, 0), (0, 1)], [(0, -1), (-1, 0), (0, 0), (0, 1)]]
 
 shapes = [S, Z, I, O, J, L, T]
-shapes1 = []
-shape = T
-#S1 = [[(0, 0), (1, 0), (-1, 1), (0, 1)], [(0, -1), (0, 0), (1, 0), (1, 1)]]
-#Z1 = [[(-1, 0), (0, 0), (0, 1), (1, 1)], [(0, -1), (-1, 0), (0, 0), (-1, 1)]]
-#I1 = [[(0, -2), (0, -1), (0, 0), (0, 1)], [(-2, -1), (-1, -1), (0, -1), (1, -1)]]
-#O1 = [[(-1, 0), (0, 0), (-1, 1), (0, 1)]]
-#J1=[[(-1, -1), (-1, 0), (0, 0), (1, 0)], [(0, -1), (1, -1), (0, 0), (0, 1)], [(-1, 0), (0, 0), (1, 0), (1, 1)], [(0, -1), (0, 0), (-1, 1), (0, 1)]]
-#L1=[[(1, -1), (-1, 0), (0, 0), (1, 0)], [(0, -1), (0, 0), (0, 1), (1, 1)], [(-1, 0), (0, 0), (1, 0), (-1, 1)], [(-1, -1), (0, -1), (0, 0), (0, 1)]]
-#T1=[[(0, -1), (-1, 0), (0, 0), (1, 0)], [(0, -1), (0, 0), (1, 0), (0, 1)], [(-1, 0), (0, 0), (1, 0), (0, 1)], [(0, -1), (-1, 0), (0, 0), (0, 1)]]
-for shape in shapes:
-    s=[]
-    temp=[]
-    for k in range(len(shape)):
-        format=shape[k]
-        for i in range(len(format)):
-            for j in range(len(format[i])):
-                if format[i][j] == '0':
-                    temp.append((j-2, i-2))
-        s.append(temp)
-        temp=[]
-    shapes1.append(s)
-print(shapes1)    
 
-
-
-
-shape_colors = [(0, 255, 0), (255, 0, 0), (0, 255, 255), (255, 255, 0), (255, 165, 0), (0, 0, 255), (128, 0, 128)]
+shape_colors = [(100, 255, 100), (255, 100, 100), (100, 255, 255), (255, 255, 100), (255, 165, 100), (100, 100, 255), (128, 100, 128)]
 # index 0 - 6 represent shape
-border_color = (192, 192, 192)
+border_color = (100, 100, 100)
 
 class Piece(object):
     rows = 20  # y
@@ -164,6 +45,7 @@ class Piece(object):
         self.y = row
         self.shape = shape
         self.color = shape_colors[shapes.index(shape)]
+        # self.color = border_color
         self.rotation = 0  # number from 0-3
 
 
@@ -181,17 +63,8 @@ def create_grid(locked_positions={}):
 def convert_shape_format(piece):
     positions = []
     format = piece.shape[piece.rotation % len(piece.shape)]
-
-    # for i, line in enumerate(format):
-    #     row = list(line)
-    #     for j, column in enumerate(row):
-    #         if column == '0':
-    #             positions.append((piece.x + j, piece.y + i))
-    for i in range(len(format)):
-        for j in range(len(format[i])):
-            if format[i][j]=='0':
-                positions.append((piece.x+j-2,piece.y+i-4))
-
+    for pos in format:
+        positions.append((pos[0]+piece.x,pos[1]+piece.y))
 
     return positions
 
@@ -200,6 +73,7 @@ def valid_space(shape, grid):
     accepted_positions = [[(j, i) for j in range(10) if grid[i][j] == (0,0,0)] for i in range(20)]
     accepted_positions = [j for sub in accepted_positions for j in sub]     #doubt
     formatted = convert_shape_format(shape)
+    # formatted = shape.shape[shape.rotation % len(shape.shape)]
 
     for pos in formatted:
         if pos not in accepted_positions:
@@ -362,6 +236,7 @@ def main():
                     print(convert_shape_format(current_piece))'''  # todo fix
 
         shape_pos = convert_shape_format(current_piece)
+        # shape_pos = current_piece.shape[current_piece.rotation % len(current_piece.shape)]
 
         # add piece to the grid for drawing
         for i in range(len(shape_pos)):
