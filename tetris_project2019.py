@@ -4,9 +4,9 @@ import random
 surface_color = (255,255,255)
 pygame.font.init()
 
-# GLOBALS VARS
-s_width = 800
-s_height = 700
+# GLOBALS VARS 
+s_width = 800   #800
+s_height = 700  #700
 play_width = 300  # meaning 300 // 10 = 30 width per block
 play_height = 600  # meaning 600 // 20 = 20 height per block
 block_size = 30
@@ -185,7 +185,7 @@ def main():
     current_piece = get_shape()
     next_piece = get_shape()
     clock = pygame.time.Clock()
-    fall_speed = 0.27
+    fall_speed = 0.30   #.27
     fall_time = 0
     score = 0
     while run:
@@ -247,6 +247,7 @@ def main():
 
         # IF PIECE HIT GROUND
         if change_piece:
+            fall_speed-=0.01
             for pos in shape_pos:
                 p = (pos[0], pos[1])
                 locked_positions[p] = current_piece.color
